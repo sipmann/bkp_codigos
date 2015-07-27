@@ -40,8 +40,7 @@
         posicao: 'rodape'
       };
 
-      //  this.confExtend(conf, configs);
-      console.log('oi');
+      this.confExtend(conf, configs);
     },
 
     //Semelhante ao jQuery.extend.

@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "Um bkp de códigos",
   "main": "util.js",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "coveralls": "^2.11.3",
     "mocha": "^2.2.5",
     "mocha-lcov-reporter": "0.0.2"
