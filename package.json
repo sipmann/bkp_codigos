@@ -1,0 +1,23 @@
+{
+  "name": "bkp_codigos",
+  "version": "0.1.0",
+  "description": "Um bkp de códigos",
+  "main": "util.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://sipmann@github.com/sipmann/bkp_codigos.git"
+  },
+  "author": "sipmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sipmann/bkp_codigos/issues"
+  },
+  "homepage": "https://github.com/sipmann/bkp_codigos#readme"
+}
