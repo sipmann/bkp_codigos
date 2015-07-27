@@ -5,7 +5,9 @@
   var util = {
     //Realiza os request retornando uma Promise com o sucesso ou erro.
     request: function(pg, params) {
-
+      return new Promise(function(done, err) {
+        done('<b>ola</b>');
+      });
     },
 
     //Faz o request para da página .html e adiciona o conteúdo do request no
@@ -18,9 +20,8 @@
           destino = document.body;
         }
 
-        this.request(pg)
+        util.request(pg)
           .then(function(data) {
-
             //Alimenta o conteúdo no destino e dispara o retorno de sucesso da
             //Promise.
             destino.innerHTML = data;
@@ -55,8 +56,10 @@
     }
   };
 
+  //Adiciona as funcoes no window.
   window.util = util;
 
+  //Trata a utilização ou não de metodos AMD.
   if (typeof window.define === "function" && window.define.amd) {
     window.define("util", [], function() {
       return window.util;
