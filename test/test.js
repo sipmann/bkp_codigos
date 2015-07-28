@@ -8,16 +8,27 @@ describe('Util', function() {
 
   beforeEach(function() {
     document = new Document();
+    global.document = document;
   });
 
   describe('navegar', function() {
     it('deve carregar um b', function(done) {
-
       var dst = document.createElement('div');
 
       util.navegar('pgNaoExistente', dst)
       .then(function() {
         assert.equal(dst.innerHTML, '<b>ola</b>');
+        done();
+      }).then(null, function(err) {
+        done(err);
+      });
+
+    });
+
+    it('deve utilizar o document.body quando não for passado o destino', function(done) {
+      util.navegar('pgNaoExistente')
+      .then(function() {
+        assert.equal(document.body.innerHTML, '<b>ola</b>');
         done();
       }).then(null, function(err) {
         done(err);
