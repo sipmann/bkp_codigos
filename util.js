@@ -12,7 +12,7 @@
 
     //Faz o request para da página .html e adiciona o conteúdo do request no
     //destino especificado. Este também retorna uma Promise.
-    //TODO adicionar parâmetros e uma possível chamada ao um metodo de inicialização da tela
+    //TODO adicionar parâmetros e uma possível chamada a um metodo de inicialização da tela
     navegar: function(pg, destino) {
       return new Promise(function(done, err) {
         //Se o destino não for especificado o document.body será utilizado no lugar.
@@ -35,13 +35,34 @@
 
     //Cria um simples alerta em alguma posição da página por um determinado
     //tempo. Tem como objetivo ser simples e não intrusivo.
-    simpleAlert: function(msg, titulo, configs) {
+    //TODO tratar posicionamento do alerta
+    simpleAlert: function(msg, configs) {
       var conf = {
         segundos: 5,
         posicao: 'rodape'
       };
 
-      this.confExtend(conf, configs);
+      if (configs) {
+        this.confExtend(conf, configs);
+      }
+
+      var dvAviso = document.createElement('div');
+      dvAviso.className = 'simpleAlert';
+      dvAviso.innerHTML = msg;
+
+      document.body.appendChild(dvAviso);
+
+      //Dado o tempo tempo definido nas configurações o alerta será removido.
+      setTimeout(function() {
+        //Caso o alerta já tenha sido removido por alguma `força` externa...
+        if (dvAviso) {
+          dvAviso.remove();
+          dvAviso = null;
+        }
+
+        //Obviamento o '* 1000' é para o fato de ser em milesegundos o timeout.
+      }, conf.segundos * 1000);
+
     },
 
     //Semelhante ao jQuery.extend.

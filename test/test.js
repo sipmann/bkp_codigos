@@ -1,13 +1,20 @@
 var assert = require("assert")
 
 var util = require('../util').util;
+var Document = require('../mocks/html').Document;
 
+var document;
 describe('Util', function() {
+
+  beforeEach(function() {
+    document = new Document();
+  });
 
   describe('navegar', function() {
     it('deve carregar um b', function(done) {
 
-      var dst = { innerHTML: '' };
+      var dst = document.createElement('div');
+
       util.navegar('pgNaoExistente', dst)
       .then(function() {
         assert.equal(dst.innerHTML, '<b>ola</b>');
