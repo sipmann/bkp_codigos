@@ -25,7 +25,7 @@ describe('Util', function() {
 
     });
 
-    it('deve utilizar o document.body quando não for passado o destino', function(done) {
+    it('deve utilizar o document.body quando nao for passado o destino', function(done) {
       util.navegar('pgNaoExistente')
       .then(function() {
         assert.equal(document.body.innerHTML, '<b>ola</b>');
@@ -34,6 +34,32 @@ describe('Util', function() {
         done(err);
       });
 
+    });
+  });
+
+  describe('simpleAlert', function() {
+    context('sem passar nenhuma configuracao', function() {
+      it('deve gerar o alerta no document.body', function() {
+        util.simpleAlert('Aviso aleatório');
+        assert.equal(document.body.childNodes.length, 1);
+        assert.equal(document.body.childNodes[0].nodeName, 'DIV');
+        assert.equal(document.body.childNodes[0].className, 'simpleAlert');
+      });
+    });
+
+    context('passando uma configuracao', function() {
+      it('deve gerar o alerta no document.body e desaparecer apos 1.5 segundos', function(done) {
+        util.simpleAlert('Aviso aleatório', {segundos:1.5});
+        assert.equal(document.body.childNodes.length, 1);
+        assert.equal(document.body.childNodes[0].nodeName, 'DIV');
+        assert.equal(document.body.childNodes[0].className, 'simpleAlert');
+
+        setTimeout(function() {
+          assert.equal(document.body.childNodes.length, 0);
+          done();
+        }, 1510); //10 milesegundos a mais para garantir a ordem de execução
+
+      });
     });
   });
 

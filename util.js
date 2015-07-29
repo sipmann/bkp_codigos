@@ -56,7 +56,7 @@
       setTimeout(function() {
         //Caso o alerta já tenha sido removido por alguma `força` externa...
         if (dvAviso) {
-          dvAviso.remove();
+          document.body.removeChild(dvAviso);
           dvAviso = null;
         }
 

@@ -4,17 +4,25 @@
 
 function Element(nome) {
   this.nodeName = nome.toUpperCase();
-  this.childs = [];
+  this.childNodes = [];
   this.html;
 };
 
 Element.prototype.appendChild = function(obj) {
-  this.childs.push(obj);
+  this.childNodes.push(obj);
   this.innerHTML = '';
-}
+};
+
+Element.prototype.removeChild = function(obj) {
+  for(var i = 0; i < this.childNodes.length; i++) {
+    if (this.childNodes[i] === obj) {
+      this.childNodes.splice(i, 1);
+    }
+  }
+};
 
 function Document() {
-  this.childs = [];
+  this.childNodes = [];
   this.body = new Element('body');
 }
 
@@ -23,7 +31,7 @@ Document.prototype.createElement = function(nome) {
 };
 
 Element.prototype.appendChild = function(obj) {
-  this.childs.push(obj);
-}
+  this.childNodes.push(obj);
+};
 
 exports.Document = Document;
