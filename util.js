@@ -6,13 +6,43 @@
     //Realiza os request retornando uma Promise com o sucesso ou erro.
     request: function(pg, params) {
       return new Promise(function(done, err) {
-        done('<b>ola</b>');
+
+        var config = {
+          method: 'POST'
+        };
+
+        if (params) {
+          util.confExtend(conf, params);
+        }
+
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+
+          //Se terminou o request e o statusCode é 200 então retorna positivo
+          //do contrário retorna o statusCode apenas
+          if (xmlhttp.readyState === 4) {
+            if (xmlhttp.status === 200) {
+              done(xmlhttp.responseText);
+            } else {
+              err(htmlhttp.status);
+            }
+          }
+        };
+
+        xmlhttp.open(config.method, pg, true);
+
+        //Se o tipo de request for POST, adicionamos o Content-type no cabeçalho
+        //do request
+        if (config.methid === 'POST') {
+          xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        }
+
+        xmlhttp.send();
       });
     },
 
     //Faz o request para da página .html e adiciona o conteúdo do request no
     //destino especificado. Este também retorna uma Promise.
-    //TODO adicionar parâmetros e uma possível chamada a um metodo de inicialização da tela
     navegar: function(pg, destino) {
       return new Promise(function(done, err) {
         //Se o destino não for especificado o document.body será utilizado no lugar.

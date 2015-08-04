@@ -5,13 +5,12 @@
 function Element(nome) {
   this.nodeName = nome.toUpperCase();
   this.childNodes = [];
-  this.html;
-};
-
-Element.prototype.appendChild = function(obj) {
-  this.childNodes.push(obj);
   this.innerHTML = '';
 };
+
+/*Element.prototype.appendChild = function(obj) {
+  this.childNodes.push(obj);
+};*/
 
 Element.prototype.removeChild = function(obj) {
   for(var i = 0; i < this.childNodes.length; i++) {
