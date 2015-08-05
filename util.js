@@ -16,8 +16,8 @@
         }
 
         var xmlhttp=new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
 
+        xmlhttp.onreadystatechange = function() {
           //Se terminou o request e o statusCode é 200 então retorna positivo
           //do contrário retorna o statusCode apenas
           if (xmlhttp.readyState === 4) {
@@ -26,6 +26,8 @@
             } else {
               err(htmlhttp.status);
             }
+          } else {
+            //TODO
           }
         };
 
@@ -44,7 +46,7 @@
     //Faz o request para da página .html e adiciona o conteúdo do request no
     //destino especificado. Este também retorna uma Promise.
     navegar: function(pg, destino) {
-      return new Promise(function(done, err) {
+      return new Promise(function(done, erro) {
         //Se o destino não for especificado o document.body será utilizado no lugar.
         if (!destino) {
           destino = document.body;
@@ -58,7 +60,7 @@
             done();
           })
           .catch(function(err) {
-
+            erro(err);
           });
       });
     },

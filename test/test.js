@@ -2,6 +2,7 @@ var assert = require("assert")
 
 var util = require('../util').util;
 var Document = require('../mocks/html').Document;
+var XMLHttpRequest = require('../mocks/httpRequest').XMLHttpRequest;
 
 var document;
 describe('Util', function() {
@@ -9,6 +10,7 @@ describe('Util', function() {
   beforeEach(function() {
     document = new Document();
     global.document = document;
+    global.XMLHttpRequest = XMLHttpRequest;
   });
 
   describe('navegar', function() {
