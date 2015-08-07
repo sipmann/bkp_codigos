@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 function XMLHttpRequest() {
   this.responseText;
   this.readyState;
@@ -15,12 +17,21 @@ XMLHttpRequest.prototype.open = function(method, destination, assync) {
 };
 
 XMLHttpRequest.prototype.send = function(params) {
-
+  var _this = this;
   this.readyState = 4;
   this.status = 200;
 
-  if (this.onreadystatechange)
-    this.onreadystatechange();
+  fs.readFile('./test/pgs/' + this.destination, 'utf8', function (err,data) {
+    if (err) {
+      return console.log(err);
+    }
+
+    _this.responseText = data;
+
+    if (_this.onreadystatechange)
+      _this.onreadystatechange();
+
+  });
 };
 
 XMLHttpRequest.prototype.setRequestHeader = function(key, value) {
