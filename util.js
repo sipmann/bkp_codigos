@@ -35,7 +35,7 @@
 
         //Se o tipo de request for POST, adicionamos o Content-type no cabeçalho
         //do request
-        if (config.methid === 'POST') {
+        if (config.method === 'POST') {
           xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         }
 
