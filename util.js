@@ -24,7 +24,7 @@
             if (xmlhttp.status === 200) {
               done(xmlhttp.responseText);
             } else {
-              err(htmlhttp.status);
+              err(xmlhttp.status);
             }
           } else {
             //TODO

@@ -37,6 +37,20 @@ describe('Util', function() {
       });
 
     });
+
+    it('deve disparar um erro 404 quando a pagina não for localizada', function(done) {
+      util.navegar('pgExistenteSQN')
+      .then(function() {
+        done(assert.equal(200, 404));
+      }).then(null, function(err) {
+        try {
+          done(assert.equal(404, err));
+        } catch(ex) {
+          done(ex);
+        }
+      });
+
+    });
   });
 
   describe('simpleAlert', function() {

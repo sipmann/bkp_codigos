@@ -23,10 +23,10 @@ XMLHttpRequest.prototype.send = function(params) {
 
   fs.readFile('./test/pgs/' + this.destination, 'utf8', function (err,data) {
     if (err) {
-      return console.log(err);
-    }
-
-    _this.responseText = data;
+      _this.responseText = err;
+      _this.status = 404;
+    } else
+      _this.responseText = data;
 
     if (_this.onreadystatechange)
       _this.onreadystatechange();
