@@ -12,7 +12,7 @@
         };
 
         if (params) {
-          util.confExtend(conf, params);
+          util.confExtend(config, params);
         }
 
         var xmlhttp=new XMLHttpRequest();
@@ -52,7 +52,7 @@
           destino = document.body;
         }
 
-        util.request(pg)
+        util.request(pg, {method: 'GET'})
           .then(function(data) {
             //Alimenta o conteúdo no destino e dispara o retorno de sucesso da
             //Promise.
