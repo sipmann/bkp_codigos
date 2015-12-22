@@ -4,3 +4,7 @@
 
 # bkp_codigos
 Apenas um bkp de alguns códigos.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/sipmann/bkp_codigos/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
