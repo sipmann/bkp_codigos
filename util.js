@@ -106,6 +106,58 @@
       }
 
       return base;
+    },
+    
+    PaginateTable: function(table, json, configs) {
+      //Ja possui o objeto de paginacao
+      if (table.objPage)
+        return;
+
+      const tpl = table.querySelector('template');
+
+      var objPage = {
+        pg: 0,
+        regByPage: 10,
+        data: json,
+        tpl: tpl,
+        tbl: table,
+        nav: function(pg) {
+          const tplBase = this.tpl.cloneNode(true).content.querySelector('tr').outerHTML;
+          const html = [];
+          let indice = pg * this.regByPage;
+
+          if (indice > this.data.length) {
+            throw "Indice fora dos limites";
+          }
+
+          for (let i = indice; i < this.data.length && i < this.regByPage; i++) {
+            let tpl = tplBase;
+
+            for (let k in this.data[i]) { 
+              tpl = tpl.replace('{'+k+'}', this.data[i][k]);
+            }
+
+            html.push(tpl);
+          }
+
+          const tbody = this.tbl.querySelector('tbody');
+          tbody.innerHTML = html.join('');
+
+          const cks = tbody.querySelectorAll('[data-click]');
+          for (let k of cks) {
+            let tmp = k.getAttribute('data-click').split('.');
+            let fn = this[tmp[0]];
+
+            k.addEventListener('click', fn[tmp[1]]);
+          }
+
+        }
+      };
+
+      objPage = util.confExtend(objPage, configs);
+
+      table.objPage = objPage;
+      table.objPage.nav(0);
     }
   };
 
