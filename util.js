@@ -124,16 +124,16 @@
         nav: function(pg) {
           var tplBase = this.tpl.cloneNode(true).content.querySelector('tr').outerHTML;
           var html = [];
-          let indice = pg * this.regByPage;
+          var indice = pg * this.regByPage;
 
           if (indice > this.data.length) {
             throw "Indice fora dos limites";
           }
 
-          for (let i = indice; i < this.data.length && i < this.regByPage; i++) {
-            let tpl = tplBase;
+          for (var i = indice; i < this.data.length && i < this.regByPage; i++) {
+            var tpl = tplBase;
 
-            for (let k in this.data[i]) { 
+            for (var k in this.data[i]) { 
               tpl = tpl.replace('{'+k+'}', this.data[i][k]);
             }
 
@@ -144,9 +144,9 @@
           tbody.innerHTML = html.join('');
 
           var cks = tbody.querySelectorAll('[data-click]');
-          for (let k of cks) {
-            let tmp = k.getAttribute('data-click').split('.');
-            let fn = this[tmp[0]];
+          for (var k of cks) {
+            var tmp = k.getAttribute('data-click').split('.');
+            var fn = this[tmp[0]];
 
             k.addEventListener('click', fn[tmp[1]]);
           }
