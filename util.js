@@ -113,7 +113,7 @@
       if (table.objPage)
         return;
 
-      const tpl = table.querySelector('template');
+      var tpl = table.querySelector('template');
 
       var objPage = {
         pg: 0,
@@ -122,8 +122,8 @@
         tpl: tpl,
         tbl: table,
         nav: function(pg) {
-          const tplBase = this.tpl.cloneNode(true).content.querySelector('tr').outerHTML;
-          const html = [];
+          var tplBase = this.tpl.cloneNode(true).content.querySelector('tr').outerHTML;
+          var html = [];
           let indice = pg * this.regByPage;
 
           if (indice > this.data.length) {
@@ -140,10 +140,10 @@
             html.push(tpl);
           }
 
-          const tbody = this.tbl.querySelector('tbody');
+          var tbody = this.tbl.querySelector('tbody');
           tbody.innerHTML = html.join('');
 
-          const cks = tbody.querySelectorAll('[data-click]');
+          var cks = tbody.querySelectorAll('[data-click]');
           for (let k of cks) {
             let tmp = k.getAttribute('data-click').split('.');
             let fn = this[tmp[0]];
